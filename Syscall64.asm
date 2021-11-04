@@ -2053,27 +2053,27 @@ _NtQuerySyscallIndex proc
 	mov     rcx, rax
     call	_NtGetCurrentPeb64
 	mov     eax, [rax + 118h]
-	test    eax, 06h
+	cmp     eax, 06h
 	je      _WINNT_6X
-	test    eax, 10h
+	cmp     eax, 10h
 	je      _WINNT_10X
 	jmp     _NtApiErrorExit
 _WINNT_6X:          
 	call	_NtGetCurrentPeb64
 	mov     eax, [rax + 11Ch]
-	test    eax, 01h
+	cmp     eax, 01h
 	je      _WINNT_WIN7
-	test    eax, 02h
+	cmp     eax, 02h
 	je      _WIN8
-	test    eax, 03h
+	cmp     eax, 03h
 	je      _WINBLUE
 	jmp     _NtApiErrorExit
 _WINNT_WIN7:
 	call	_NtGetCurrentPeb64
-	mov     ax, [rax + 122h]
-	test    ax, 0h
+	mov     ax, [rax + 11ch]
+	cmp     ax, 0h
 	je      _WIN7_SP0
-	test    ax, 1h
+	cmp     ax, 1h
 	je      _WIN7_SP1
 	jmp     _NtApiErrorExit
 _WINNT_10X:          
