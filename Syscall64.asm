@@ -2070,10 +2070,10 @@ _WINNT_6X:
 	jmp     _NtApiErrorExit
 _WINNT_WIN7:
 	call	_NtGetCurrentPeb64
-	mov     ax, [rax + 11ch]
-	cmp     ax, 0h
+	mov     ax, [rax + 120h]
+	cmp     ax, 1DB0h
 	je      _WIN7_SP0
-	cmp     ax, 1h
+	cmp     ax, 1DB1h
 	je      _WIN7_SP1
 	jmp     _NtApiErrorExit
 _WINNT_10X:          
